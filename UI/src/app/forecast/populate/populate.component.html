@@ -1,0 +1,12 @@
+<div class="data-import-section">
+    <div class="form-group">
+        <label for="fileImport">Import data:</label>
+        <input type="file" id="fileImport" class="form-control" accept=".csv" (change)="hasUpload($event)" multiple/>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let file of files">{{ file.name }}</li>
+    </ul>
+
+    <button type="button" class="btn btn-primary" (click)="uploadFiles()">POPULATE</button>
+</div>

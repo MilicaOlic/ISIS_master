@@ -1,0 +1,16 @@
+<div class="date-selection-section">
+    <form [formGroup]="dates" class="form-style">
+        <div class="form-group">
+            <label for="dateFrom">Date from:</label>
+            <input type="date" id="dateFrom" class="form-control" value="2018-01-01" min="2018-01-01"
+                max="2021-12-31" formControlName="dateFrom"/>
+        </div>
+        
+        <div class="form-group">
+            <label for="dateTo">Date to:</label>
+            <input type="date" id="dateTo" class="form-control" value="2018-01-01" min="2018-01-01" max="2021-12-31" formControlName="dateTo"/>
+        </div>
+        
+        <button type="button" class="btn btn-success" (click)="trainModel()">TRAIN</button>
+    </form>
+</div>
