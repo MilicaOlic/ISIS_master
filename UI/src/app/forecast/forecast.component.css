@@ -1,56 +1,90 @@
 .wrapper {
     display: flex;
-    justify-content: space-between;
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-between; /* Razdvaja control-panel i chart-container */
+    width: 100%;
+    height: 100vh; /* Puni ekran po visini */
+    background-image: url('C:\Users\Centar\Documents\ISIS-Milica\UI\pic.jpg'); /* Putanja do pozadinske slike */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative; /* Postavljanje wrapper-a kao relativno pozicioniranog */
 }
 
 .control-panel {
-    flex: 1;
-    margin-right: 20px;
-}
-
-.chart-container {
-    flex: 2;
-}
-
-.form-style {
-    background: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group input[type="date"],
-.form-group select {
-    width: 100%;
+    position: absolute; /* Apsolutno pozicioniranje unutar wrapper-a */
+    right: 0; /* Poravnato sa desnom stranom */
+    top: 0; /* Poravnato sa vrhom */
+    width: 50%; /* Zauzima desnu polovinu ekrana */
+    height: 100%; /* Punidisplay: flex;
+    flex-direction: column;
+    align-items: flex-end; / Poravnavanje form-group elemenata na desno */
     padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 16px;
-}
+    }
 
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
+    .form-group {
+        width: 40%; 
+        margin: 5px;
+        align-items: center;
+        box-shadow: 0 0 10px greenyellow;
+        
+        padding: 15px;
+        background-color: beige;
+        }
+        
+        .chart-container {
+        position: absolute; 
+        top: 0;
+        right: 45; 
+        width: 50%;
+        height: 50%;
+        z-index: 1;
+        }
+        
+        .btn-primary {
+            background-color: greenyellow; 
+            border: none; 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            font-weight: bold;
+            color: white; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+            text-transform: uppercase; 
+        }
+        
+        .btn-primary:hover {
+            background-color: greenyellow; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+            transform: translateY(-2px); 
+        }
+        
+        .btn-primary:active {
+            background-color: #004085; 
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); 
+            }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-}
+        .btn-primary:focus {
+                outline: none; 
+                }
+                .form-group input[type="date"] {
+                    width: 80%;
+                    padding: 10px;
+                    border-radius: 4px;
+                    border: 1px solid #ddd;
+                    font-size: 16px;
+         }
+         .form-group{
+            width: 40%;
+            padding: 6px;
+
+         }
+        .form-control{
+            width: 80%;
+            
+        }  
+    .your-image-class{
+
+    }

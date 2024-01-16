@@ -9,7 +9,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import numpy as np
 from joblib import dump, load   
-from xgboost import XGBRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
 
 NUMBER_OF_COLUMNS = 16
 SHARE_FOR_TRAINING = 0.85
@@ -32,36 +34,39 @@ class ModelCreator:
             y.append(seq_y)
         return np.array(X), np.array(y)
     
+    # start the model training
     def start_model_training(self, yearFrom, monthFrom, dayFrom, yearTo, monthTo, dayTo):
-        self.dataframe = self.load_data(yearFrom, monthFrom, dayFrom, yearTo, monthTo, dayTo)
+        def prepare_data(year_start, month_start, day_start, year_end, month_end, day_end):
+            df = self.load_data(year_start, month_start, day_start, year_end, month_end, day_end)
+            df.fillna(method="ffill", inplace=True)
+            return df
 
-        # Create lag features (you can adjust the number of lags)
+        def save_model(rf_model, timestamp):
+            file_path = f"models/model_{timestamp}.joblib"
+            full_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), file_path)
+            dump(rf_model, full_path)
+            return full_path
+
+        dataset = prepare_data(yearFrom, monthFrom, dayFrom, yearTo, monthTo, dayTo)
         
-        df = self.dataframe
+        [print(column_name) for column_name in dataset.columns]
 
-        scaler = MinMaxScaler()
-        features = df.drop('Load', axis=1)
-        target = df['Load']
+        features = dataset.drop(['Load'], axis=1)
+        target = dataset['Load']
 
-        features_scaled = scaler.fit_transform(features)
+        features_train, features_test, target_train, target_test = train_test_split(features, target, test_size=0.2, shuffle=False)
 
-        # Split data into train and test sets
-        X_train, X_test, y_train, y_test = train_test_split(features_scaled, target, test_size=0.2, random_state=42)
+        forest_model = RandomForestRegressor()
+        forest_model.fit(features_train, target_train)
 
-        # XGBoost Model
-        model = XGBRegressor(n_estimators=1000, learning_rate=0.05)
+        target_predictions = forest_model.predict(features_test)
+        error_rmse = np.sqrt(mean_squared_error(target_test, target_predictions))
+        print(f"Root Mean Squared Error: {error_rmse}")
 
-        # Train the model
-        model.fit(X_train, y_train, early_stopping_rounds=5, eval_set=[(X_test, y_test)], verbose=False)
-
-        current_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
         
-        # # Define the filename with the timestamp
-        filename = f"{os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f'models\\model_{current_timestamp}.joblib')}"
-        
-        dump(model, filename)
-
-        print(f"Model saved as: {filename}")
+        model_file = save_model(forest_model, current_time)
+        print(f"Model stored at: {model_file}")
 
     def predict(self, days, yearFrom, monthFrom, dayFrom, model_name):
         self.predicted_date = datetime(yearFrom, monthFrom, dayFrom)

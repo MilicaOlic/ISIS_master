@@ -1,13 +1,14 @@
 .date-selection-section {
-    background: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px greenyellow;
     margin-bottom: 20px;
+    background-color: beige; /* Light gray background */
+    text-align: left; /* Center-align content */
+    max-width: 40%;
 }
 
 .form-style {
-    margin: auto;
 }
 
 .form-group {
@@ -20,7 +21,7 @@ margin-bottom: 5px;
 }
 
 .form-group input[type="date"] {
-width: 100%;
+width: 80%;
 padding: 10px;
 border-radius: 4px;
 border: 1px solid #ddd;
@@ -28,19 +29,19 @@ font-size: 16px;
 }
 
 .btn-success {
-width: 100%;
+width: 50%;
 padding: 10px;
 border-radius: 4px;
 font-size: 16px;
 color: white;
-background-color: #007bff;
-border-color: #007bff;
+background-color: greenyellow;
+border-color: greenyellow;
 cursor: pointer;
 }
 
 .btn-success:hover {
-background-color: #0056b3;
-border-color: #0056b3;
+background-color: greenyellow;
+border-color: greenyellow;
 }
 
 /* Adjust the width of the form in larger screens if needed */

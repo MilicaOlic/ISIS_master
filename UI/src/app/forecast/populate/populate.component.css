@@ -1,9 +1,11 @@
 .data-import-section {
-    background: #f9f9f9;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px greenyellow;
     margin-bottom: 20px;
+    background-color: beige; /* Light gray background */
+    text-align: center; /* Center-align content */
+    max-width: 40%;
 }
 
 .form-group {
@@ -16,12 +18,13 @@
 }
 
 .form-group input[type="file"] {
-    width: 100%;
+    width: auto; 
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ddd;
     font-size: 16px;
     line-height: 1.5;
+    margin: 0 auto; 
 }
 
 .list-group {
@@ -36,31 +39,32 @@
 }
 
 .btn-primary {
-    width: 100%;
-    padding: 10px;
+    width: auto; /* Button takes the necessary width */
+    padding: 10px 20px; /* Adjust padding as needed */
     border-radius: 4px;
     font-size: 16px;
     color: white;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: greenyellow;
+    border-color: greenyellow;
     cursor: pointer;
+    display: inline-block; /* Display as inline block to center */
 }
 
 .btn-primary:hover {
-background-color: #0056b3;
-border-color: #004085;
+    background-color: greenyellow;
+    border-color: greenyellow;
 }
 
 /* This will style the file input to look more in line with the rest of the form */
 .custom-file-input {
-cursor: pointer;
+    cursor: pointer;
 }
 
 /* Style adjustments for responsiveness */
 @media (max-width: 768px) {
-.btn {
-display: block;
-width: 100%;
-margin-bottom: 10px;
-}
+    .btn {
+        display: block;
+        width: auto; /* Adjust width for smaller screens */
+        margin-bottom: 10px;
+    }
 }

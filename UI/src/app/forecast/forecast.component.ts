@@ -53,9 +53,9 @@ export class ForecastComponent implements OnInit {
         type: "stackedArea",
         name: "Prediction",
         showInLegend: true,
-        legendMarkerType: "square",
+        legendMarkerType: "circle",
         markerSize: 0,
-        color: "rgba(0,0,255,.9)",
+        color: "greenyellow",
         dataPoints: [
           {x: new Date(), y: 1}
           ]
@@ -77,7 +77,7 @@ export class ForecastComponent implements OnInit {
 
     this.chartOptions = {
       title: {
-      text: "Predicted electricity load"             
+      text: "Electricity consumption forecast"
       },
       animationEnabled: true,
       axisX: {      
@@ -110,12 +110,12 @@ export class ForecastComponent implements OnInit {
       },
       data: [
         {
-          type: "column",
+          type: "stackedArea",
           markerSize: 5,
           name: "Prediction",
           showInLegend: true,
-          legendMarkerType: "triangle",
-          color: "rgba(82, 170, 71, 0.5)",
+          legendMarkerType: "circle",
+          color: "greenyellow",
           dataPoints: [
             {x: new Date(), y: 1}
             ]
